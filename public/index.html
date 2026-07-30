@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05070c" />
+  <title>T3A // Real Multiplayer Arena</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <main id="lobby" class="lobby-shell">
+    <section class="hero-card">
+      <div class="eyebrow">TEAM TIC-TAC-TOE ARENA</div>
+      <h1>T3A <span>//</span> REAL MULTIPLAYER</h1>
+      <p>Server-authoritative team tactics. Create an arena, share the room code, and play from separate browsers or computers.</p>
+      <div class="status-line"><span id="connDot" class="dot"></span><span id="connText">Connecting to arena server…</span></div><div id="lanHint" class="lan-hint"></div>
+    </section>
+
+    <section class="lobby-grid">
+      <div class="panel">
+        <div class="panel-kicker">HOST</div>
+        <h2>Create arena</h2>
+        <label>Display name<input id="createName" maxlength="20" autocomplete="nickname" placeholder="EIMY" /></label>
+        <button id="createBtn" class="btn primary">CREATE ROOM</button>
+        <p class="hint">You become Team X Captain and host.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-kicker">JOIN</div>
+        <h2>Enter room</h2>
+        <label>Display name<input id="joinName" maxlength="20" autocomplete="nickname" placeholder="PLAYER" /></label>
+        <label>Room code<input id="roomCode" maxlength="8" spellcheck="false" placeholder="ABC123" /></label>
+        <label>Side<select id="teamSelect"><option value="O">Team O</option><option value="X">Team X</option><option value="SPECTATOR">Spectator</option></select></label>
+        <button id="joinBtn" class="btn secondary">JOIN ARENA</button>
+      </div>
+    </section>
+
+    <section class="how panel">
+      <div><b>1</b><span>Host creates room</span></div><div><b>2</b><span>Share room code / link</span></div><div><b>3</b><span>At least one X + one O</span></div><div><b>4</b><span>Host starts round</span></div>
+    </section>
+  </main>
+
+  <main id="arena" class="arena-shell hidden">
+    <header class="topbar">
+      <div class="brand"><small>TEAM TIC-TAC-TOE ARENA</small><strong>T3A // PRO CIRCUIT</strong></div>
+      <div class="room-chip">ROOM <b id="roomLabel">------</b> <button id="copyLinkBtn" title="Copy invite link">COPY LINK</button></div>
+      <div class="network"><span class="live">● LIVE</span><span id="netStatus">CONNECTED</span><button id="lockBtn" class="lock-btn" title="Lock private arena">LOCK</button></div>
+    </header>
+
+    <section class="matchbar">
+      <div class="teamline x"><div class="glyph">X</div><div><small>TEAM X</small><strong>NEON WOLVES</strong></div><div class="score" id="scoreX">0</div></div>
+      <div class="matchcore">
+        <div class="round">ROUND <b id="roundNo">1</b></div>
+        <div id="clock" class="clock">--</div>
+        <div><small>PHASE</small><strong id="phaseLabel">WAITING</strong></div>
+      </div>
+      <div class="teamline o"><div class="score" id="scoreO">0</div><div><small>TEAM O</small><strong>MAGENTA VOID</strong></div><div class="glyph">O</div></div>
+    </section>
+
+    <section class="phase-rail"><div id="railProposal">01 PROPOSE</div><div id="railVoting">02 VOTE</div><div id="railExecution">03 EXECUTE</div></section>
+
+    <section class="arena-grid">
+      <aside class="sidebar">
+        <section class="panel roster"><div class="panel-kicker cyan">TEAM X</div><div id="rosterX"></div></section>
+        <section class="panel telemetry"><div class="panel-kicker">YOU</div><div class="stat"><span>NAME</span><b id="meName">—</b></div><div class="stat"><span>ROLE</span><b id="meRole">—</b></div><div class="stat"><span>VOTE WEIGHT</span><b id="meWeight">—</b></div><div class="stat"><span>SIDE</span><b id="meTeam">—</b></div></section>
+      </aside>
+
+      <section class="centerstage panel">
+        <div class="board-head"><span id="activeTeamText">WAITING FOR PLAYERS</span><span id="instruction">Create or join a room.</span></div>
+        <div id="board" class="board" aria-label="15 by 15 game board"></div>
+        <div id="votePanel" class="vote-panel hidden"></div>
+        <div id="hostControls" class="host-controls hidden">
+          <button id="startBtn" class="btn primary">START MATCH</button>
+          <button id="nextRoundBtn" class="btn primary hidden">NEXT ROUND</button>
+          <button id="resetBtn" class="btn danger">RESET MATCH</button>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="panel roster"><div class="panel-kicker magenta">TEAM O</div><div id="rosterO"></div></section>
+        <section class="panel roster"><div class="panel-kicker">SPECTATORS</div><div id="rosterS"></div></section>
+        <section class="panel eventbox"><div class="panel-kicker">MATCH EVENT BUS</div><div id="events"></div></section>
+      </aside>
+    </section>
+
+    <footer class="footer"><span>SERVER-AUTHORITATIVE STATE</span><span>15×15 // 5-IN-LINE</span><span>NATIVE WEBSOCKET // ZERO DEPENDENCIES</span></footer>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
