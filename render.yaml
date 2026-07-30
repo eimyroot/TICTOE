@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: t3a-private-arena
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm run check
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: T3A_ACCESS_PASSWORD
+        sync: false
+      - key: T3A_SESSION_SECRET
+        generateValue: true
