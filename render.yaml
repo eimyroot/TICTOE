@@ -3,6 +3,7 @@ services:
     name: t3a-private-arena
     runtime: node
     plan: free
+    region: frankfurt
     branch: main
     buildCommand: npm run check
     startCommand: npm start
