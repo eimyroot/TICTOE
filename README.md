@@ -1,5 +1,7 @@
 # T3A // Private Real Multiplayer Arena
 
+> **Portfolio status:** Experimental POC. Intentionally small and not production infrastructure.
+
 Password-protected, server-authoritative multiplayer proof-of-concept for Team Tic-Tac-Toe Arena.
 
 ## Render deployment
