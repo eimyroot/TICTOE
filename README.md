@@ -1,8 +1,25 @@
-# T3A // Private Real Multiplayer Arena
+<div align="center">
+  <h1>T3A</h1>
+  <p><strong>Small server-authoritative multiplayer proof-of-concept for Team Tic-Tac-Toe.</strong></p>
+  <p>
+    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-server-339933?logo=nodedotjs&logoColor=white">
+    <img alt="WebSocket" src="https://img.shields.io/badge/realtime-WebSocket-2563eb">
+    <img alt="Auth" src="https://img.shields.io/badge/access-password%20protected-6b7280">
+    <img alt="Status" src="https://img.shields.io/badge/status-experimental%20POC-f59e0b">
+  </p>
+</div>
 
 > **Portfolio status:** Experimental POC. Intentionally small and not production infrastructure.
 
-Password-protected, server-authoritative multiplayer proof-of-concept for Team Tic-Tac-Toe Arena.
+T3A is a password-protected, server-authoritative multiplayer experiment focused on sessions, realtime state and a deliberately small game loop.
+
+```mermaid
+flowchart LR
+    A[Authenticated player] --> B[WebSocket session]
+    B --> C[Authoritative server]
+    C --> D[Match state]
+    D --> B
+```
 
 ## Render deployment
 
